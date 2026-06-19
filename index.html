@@ -240,7 +240,7 @@
   </section>
 
   <!-- Section 3: Marquee Band -->
-  <section class="relative w-full overflow-hidden bg-brand-accent py-3.5 md:py-5 text-brand-bg font-bold uppercase tracking-widest text-[10px] md:text-sm border-y border-brand-border select-none z-10">
+  <section class="relative w-full overflow-hidden bg-brand-accent py-7 text-brand-bg font-extrabold uppercase tracking-widest text-lg md:text-xl border-y-4 border-brand-accent/40 select-none z-10">
     <div class="animate-marquee gap-8 flex whitespace-nowrap">
       <div>Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull; Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull;</div>
       <div aria-hidden="true">Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull; Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull;</div>
@@ -562,10 +562,10 @@
         <p class="text-brand-muted text-sm md:text-base leading-relaxed font-light">Written by practitioners. Read by strategists.</p>
       </div>
       
-      <!-- Contributors Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
+      <!-- Contributors Carousel/Grid -->
+      <div class="contributor-carousel flex md:grid md:grid-cols-3 gap-4 md:gap-6 items-start overflow-x-auto md:overflow-visible hide-scrollbar snap-x snap-mandatory md:snap-none pb-4 md:pb-0" data-carousel="contributors">
         <!-- Contributor 1 -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
+        <div class="contributor-card w-full flex-shrink-0 snap-start bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
           <div class="flex items-center gap-4 mb-5">
             <img src="https://picsum.photos/seed/contrib1/100/100" alt="Lt. Gen. Sandeep Mehta" class="w-16 h-16 shrink-0 rounded-full object-cover border border-brand-accent/40 select-none">
             <div>
@@ -579,7 +579,7 @@
         </div>
 
         <!-- Contributor 2 -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
+        <div class="contributor-card w-full flex-shrink-0 snap-start bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
           <div class="flex items-center gap-4 mb-5">
             <img src="https://picsum.photos/seed/contrib2/100/100" alt="Dr. Arundhati Rao" class="w-16 h-16 shrink-0 rounded-full object-cover border border-brand-accent/40 select-none">
             <div>
@@ -593,7 +593,7 @@
         </div>
 
         <!-- Contributor 3 -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
+        <div class="contributor-card w-full flex-shrink-0 snap-start bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
           <div class="flex items-center gap-4 mb-5">
             <img src="https://picsum.photos/seed/contrib3/100/100" alt="Commodore V. K. Nair" class="w-16 h-16 shrink-0 rounded-full object-cover border border-brand-accent/40 select-none">
             <div>
@@ -606,6 +606,7 @@
           </p>
         </div>
       </div>
+      <div class="carousel-dots flex justify-center gap-2 md:hidden" data-carousel-dots="contributors" aria-label="Contributor carousel position"></div>
     </div>
   </section>
 
@@ -1115,7 +1116,7 @@
       const dotsWrap = document.querySelector(`[data-carousel-dots="${id}"]`);
       const prevButton = document.querySelector(`[data-carousel-prev="${id}"]`);
       const nextButton = document.querySelector(`[data-carousel-next="${id}"]`);
-      const cards = Array.from(carousel.querySelectorAll('.article-card'));
+      const cards = Array.from(carousel.querySelectorAll('.article-card, .contributor-card'));
       if (!dotsWrap || cards.length === 0) return;
 
       dotsWrap.innerHTML = cards.map((_, index) => (
@@ -1174,7 +1175,7 @@
       updateCarouselState();
     };
 
-    document.querySelectorAll('.article-carousel').forEach(setupCarouselDots);
+    document.querySelectorAll('.article-carousel, .contributor-carousel').forEach(setupCarouselDots);
 
     const articleCards = document.querySelectorAll('.article-card');
     
