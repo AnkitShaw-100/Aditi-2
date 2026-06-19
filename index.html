@@ -202,6 +202,13 @@
     </video>
 
     <div class="absolute inset-0 z-20 pointer-events-none bg-gradient-to-t from-brand-dark/35 via-transparent to-brand-dark/25"></div>
+    <div id="video-loading-cover" class="absolute inset-0 z-30 flex flex-col items-center justify-center gap-4 bg-brand-dark text-brand-bg transition-opacity duration-500">
+      <div class="h-10 w-10 rounded-full border border-brand-bg/25 border-t-brand-bg animate-spin"></div>
+      <div class="text-center">
+        <div class="font-serif text-3xl font-bold tracking-tight">ADITI</div>
+        <div class="mt-2 text-[10px] uppercase tracking-[0.3em] text-brand-bg/70">Loading video</div>
+      </div>
+    </div>
   </section>
 
   <!-- Section 2: Hero Section -->
@@ -769,6 +776,12 @@
     // Register GSAP Plugins
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
+    const videoLoadingCover = document.getElementById('video-loading-cover');
+    const hideVideoLoadingCover = () => {
+      if (!videoLoadingCover) return;
+      videoLoadingCover.classList.add('opacity-0', 'pointer-events-none');
+    };
+
     const homeVideos = document.querySelectorAll('.home-video-player');
     homeVideos.forEach((homeVideo) => {
       homeVideo.muted = true;
@@ -783,6 +796,8 @@
         homeVideo.src = 'media/aditi-hero-video.mp4';
         homeVideo.load();
       });
+      homeVideo.addEventListener('canplay', hideVideoLoadingCover, { once: true });
+      homeVideo.addEventListener('playing', hideVideoLoadingCover, { once: true });
 
       const startHomeVideo = () => {
         const playPromise = homeVideo.play();
