@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Required | ADITI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-bg': '#FAF9F6',
+            'brand-surface': '#FFFFFF',
+            'brand-accent': '#800020',
+            'brand-dark': '#181816',
+            'brand-muted': '#666662',
+            'brand-border': '#E5E2DA'
+          },
+          fontFamily: {
+            serif: ['Georgia', 'serif'],
+            sans: ['Inter', 'Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-brand-bg text-brand-dark font-sans flex items-center justify-center px-5 py-20">
+  <a href="index.html#read" class="absolute left-5 top-5 md:left-8 md:top-8 inline-flex items-center gap-2 rounded-full border border-brand-accent/35 px-4 py-2 text-xs uppercase tracking-widest text-brand-accent font-bold hover:bg-brand-accent hover:text-brand-bg transition-colors">
+    <span aria-hidden="true">&larr;</span>
+    <span>Back</span>
+  </a>
+  <main class="w-full max-w-md bg-brand-surface border border-brand-border rounded-xl p-6 md:p-8 shadow-xl shadow-brand-accent/5">
+    <h1 class="font-serif text-4xl font-bold mb-3">Login Required</h1>
+    <p class="text-brand-muted text-sm leading-relaxed mb-8">Premium dispatches require authentication. Enter your login details to continue.</p>
+
+    <form class="space-y-5" action="#" method="post">
+      <label class="block">
+        <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Login</span>
+        <input type="text" name="login" class="mt-2 w-full rounded-lg border border-brand-border bg-brand-bg px-4 py-3 text-brand-dark outline-none focus:border-brand-accent" placeholder="Enter login">
+      </label>
+      <label class="block">
+        <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Password</span>
+        <input type="password" name="password" class="mt-2 w-full rounded-lg border border-brand-border bg-brand-bg px-4 py-3 text-brand-dark outline-none focus:border-brand-accent" placeholder="Enter password">
+      </label>
+      <button type="submit" class="w-full rounded-lg bg-brand-accent px-5 py-3 text-sm font-bold uppercase tracking-widest text-brand-bg hover:bg-brand-accent/90 transition-colors">
+        Login
+      </button>
+    </form>
+  </main>
+</body>
+</html>

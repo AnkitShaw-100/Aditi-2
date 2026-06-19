@@ -96,6 +96,48 @@
     #cursor-ring {
       box-shadow: 0 0 10px rgba(128, 0, 32, 0.15);
     }
+
+    .carousel-dot {
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 9999px;
+      background: rgba(128, 0, 32, 0.25);
+      transition: width 300ms ease, background-color 300ms ease;
+    }
+
+    .carousel-dot.is-active {
+      width: 1.75rem;
+      background: #800020;
+    }
+
+    .article-card-size {
+      width: 100%;
+      flex: 0 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .article-card-size {
+        width: calc((100% - 1.5rem) / 2);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .article-card-size {
+        width: calc((100% - 3rem) / 3);
+      }
+    }
+
+    .model-stat-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    .text-balance {
+      text-wrap: balance;
+    }
   </style>
 </head>
 <body class="bg-brand-bg font-sans antialiased text-brand-dark">
@@ -126,8 +168,9 @@
   <!-- Header / Navigation Bar -->
   <header class="fixed top-0 left-0 w-full h-20 bg-brand-bg/85 backdrop-blur-md z-50 flex items-center justify-between px-6 md:px-12 border-b border-transparent transition-colors duration-300">
     <!-- Logo -->
-    <a href="#" class="font-serif text-2xl font-bold tracking-tight text-brand-accent flex items-center gap-2 hover:opacity-85 transition-opacity magnetic">
-      ADITI
+    <a href="#" class="font-serif text-2xl font-bold tracking-tight text-brand-accent flex items-center gap-2.5 hover:opacity-85 transition-opacity magnetic">
+      <img src="media/Copy%20of%20TM%20(6).png" alt="ADITI logo" class="h-8 w-8 object-contain">
+      <span>ADITI</span>
     </a>
     
     <!-- Navigation Links & Menu Trigger -->
@@ -150,48 +193,47 @@
   </header>
 
   <!-- Section 1: Video Intro -->
-  <section class="relative w-full h-screen overflow-hidden flex items-center justify-center bg-brand-dark">
+  <section class="relative w-full h-[68svh] md:h-[74svh] lg:h-[82vh] overflow-hidden flex items-center justify-center bg-brand-dark">
     <!-- Autoplay Background Video -->
-    <video id="home-video" class="absolute inset-0 w-full h-full object-cover opacity-90" autoplay muted loop playsinline preload="auto">
+    <video id="home-video" class="home-video-player absolute inset-0 z-10 w-full h-full object-cover object-center bg-brand-dark" autoplay muted loop playsinline preload="auto" poster="media/optimized/brand-bg-1600.jpg">
       <source src="media/Copy%20of%20main%20comp_7.mp4" type="video/mp4">
       <source src="media/aditi-hero-video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    
-    <!-- Dark Vignette Overlay for Contrast on the Video -->
-    <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-brand-dark/55"></div>
+
+    <div class="absolute inset-0 z-20 pointer-events-none bg-gradient-to-t from-brand-dark/35 via-transparent to-brand-dark/25"></div>
   </section>
 
   <!-- Section 2: Hero Section -->
-  <section id="hero-section" class="relative w-full h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden border-b border-brand-border">
+  <section id="hero-section" class="relative w-full min-h-[72svh] lg:h-screen flex flex-col items-center justify-center text-center px-4 py-24 lg:py-0 overflow-hidden border-b border-brand-border">
     <!-- Glowing Background Radial Mask -->
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(128,0,32,0.035)_0%,transparent_60%)] pointer-events-none z-0"></div>
 
     <!-- Staggered Title -->
-    <h2 id="hero-title" class="relative z-10 font-serif text-8xl md:text-[12rem] font-bold tracking-tighter text-brand-accent leading-none flex gap-1 justify-center select-none">
+    <h2 id="hero-title" class="relative z-10 font-serif text-6xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-bold tracking-tighter text-brand-accent leading-none flex gap-1 justify-center select-none">
       <span>A</span><span>D</span><span>I</span><span>T</span><span>I</span>
     </h2>
     
     <!-- Subtitle container (sliding mask) -->
     <div class="relative z-10 w-full max-w-xl overflow-hidden py-4 mt-6">
-      <div id="hero-subtitle" class="font-sans text-lg md:text-2xl text-brand-muted font-medium tracking-wide uppercase whitespace-nowrap">
+      <div id="hero-subtitle" class="font-sans text-sm sm:text-lg md:text-2xl text-brand-muted font-medium tracking-wide uppercase whitespace-normal sm:whitespace-nowrap">
         Strategy of war. Not defence news.
       </div>
     </div>
     
     <!-- Action CTAs -->
-    <div id="hero-ctas" class="relative z-10 flex flex-col sm:flex-row gap-4 mt-10">
-      <a href="#read" class="px-8 py-3.5 bg-brand-accent text-brand-bg font-bold rounded-lg hover:bg-brand-accent/90 transition-all duration-300 text-sm tracking-wide text-center hover:scale-105 shadow-lg shadow-brand-accent/15">
+    <div id="hero-ctas" class="relative z-10 flex flex-col sm:flex-row gap-4 mt-8 sm:mt-10 w-full max-w-sm sm:max-w-none sm:w-auto">
+      <a href="#read" class="px-6 sm:px-8 py-3.5 bg-brand-accent text-brand-bg font-bold rounded-lg hover:bg-brand-accent/90 transition-all duration-300 text-sm tracking-wide text-center hover:scale-105 shadow-lg shadow-brand-accent/15">
         Read the Inaugural Issue
       </a>
-      <a href="#pillars" class="px-8 py-3.5 border border-brand-accent/40 text-brand-accent font-bold rounded-lg hover:bg-brand-accent/10 hover:border-brand-accent transition-all duration-300 text-sm tracking-wide text-center hover:scale-105">
+      <a href="#pillars" class="px-6 sm:px-8 py-3.5 border border-brand-accent/40 text-brand-accent font-bold rounded-lg hover:bg-brand-accent/10 hover:border-brand-accent transition-all duration-300 text-sm tracking-wide text-center hover:scale-105">
         The Framework
       </a>
     </div>
   </section>
 
   <!-- Section 3: Marquee Band -->
-  <section class="relative w-full overflow-hidden bg-brand-accent py-5 text-brand-bg font-bold uppercase tracking-widest text-xs md:text-sm border-y border-brand-border select-none z-10">
+  <section class="relative w-full overflow-hidden bg-brand-accent py-3.5 md:py-5 text-brand-bg font-bold uppercase tracking-widest text-[10px] md:text-sm border-y border-brand-border select-none z-10">
     <div class="animate-marquee gap-8 flex whitespace-nowrap">
       <div>Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull; Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull;</div>
       <div aria-hidden="true">Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull; Strategy &bull; Independent &bull; Deliberately Contrarian &bull; Rigorously Analytical &bull; Proudly Indian &bull;</div>
@@ -199,62 +241,72 @@
   </section>
 
   <!-- Section 4: Brand Statement -->
-  <section class="py-36 md:py-48 px-6 bg-brand-bg relative flex items-center justify-center">
-    <div id="brand-statement" class="max-w-4xl text-center font-serif italic text-2xl md:text-4xl text-brand-dark leading-relaxed md:leading-loose">
+  <section class="py-20 md:py-32 lg:py-40 px-6 bg-brand-bg relative flex items-center justify-center">
+    <div id="brand-statement" class="max-w-4xl text-center font-serif italic text-xl sm:text-2xl md:text-4xl text-brand-dark leading-relaxed md:leading-loose">
       ADITI is an intellectual space for Indian geopolitical and strategic thinking — where doctrine is examined, terrain is mapped, and armament is understood not as hardware, but as intent.
     </div>
   </section>
 
   <!-- Section 5: Framework Pillars -->
-  <section id="pillars" class="py-16 md:py-24 px-6 md:px-12 bg-brand-bg border-t border-brand-border relative">
+  <section id="pillars" class="py-12 md:py-16 px-5 sm:px-6 md:px-12 bg-brand-bg border-t border-brand-border relative">
     <div class="max-w-7xl mx-auto">
       <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold block mb-4">Core Philosophy</span>
-      <h2 class="font-serif text-4xl md:text-5xl font-bold mb-10 md:mb-12 tracking-tight text-brand-dark">The ADITI Framework</h2>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold mb-8 md:mb-10 tracking-tight text-brand-dark">The ADITI Framework</h2>
       
       <!-- A-D-I-T-I Grid Layout -->
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6">
         <!-- Card 1: Armament -->
-        <div class="framework-card tilt-card bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col justify-between min-h-[260px] md:min-h-[300px] transition-all duration-300 select-none">
-          <div class="font-serif text-6xl md:text-7xl font-bold text-brand-accent">A</div>
-          <div class="mt-8 pointer-events-none">
-            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-accent block mb-2">Armament</span>
-            <p class="text-brand-muted text-sm leading-relaxed">Hardware is code. We analyze India's defence purchases not as line-items, but as strategic intent.</p>
+        <div class="framework-card tilt-card bg-brand-accent border border-brand-accent/30 rounded-xl p-5 sm:p-6 md:p-7 flex flex-col items-center justify-between text-center min-h-[210px] md:min-h-[280px] transition-all duration-300 select-none overflow-hidden">
+          <div class="flex min-h-24 md:min-h-28 w-full items-center justify-center">
+            <img src="media/Armament-w-scaled.webp" alt="Armament" class="h-20 w-20 md:h-24 md:w-24 object-contain mix-blend-screen opacity-95 pointer-events-none">
+          </div>
+          <div class="mt-4 pointer-events-none">
+            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-bg block mb-2">Armament</span>
+            <p class="text-brand-bg/80 text-sm leading-relaxed">Hardware is code. We analyze India's defence purchases not as line-items, but as strategic intent.</p>
           </div>
         </div>
         
         <!-- Card 2: Doctrine -->
-        <div class="framework-card tilt-card bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col justify-between min-h-[260px] md:min-h-[300px] transition-all duration-300 select-none">
-          <div class="font-serif text-6xl md:text-7xl font-bold text-brand-accent">D</div>
-          <div class="mt-8 pointer-events-none">
-            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-accent block mb-2">Doctrine</span>
-            <p class="text-brand-muted text-sm leading-relaxed">Tactics win battles, doctrines win wars. Examining the paradigms guiding India's high command.</p>
+        <div class="framework-card tilt-card bg-brand-accent border border-brand-accent/30 rounded-xl p-5 sm:p-6 md:p-7 flex flex-col items-center justify-between text-center min-h-[210px] md:min-h-[280px] transition-all duration-300 select-none overflow-hidden">
+          <div class="flex min-h-24 md:min-h-28 w-full items-center justify-center">
+            <img src="media/Doctrine-w-scaled.webp" alt="Doctrine" class="h-20 w-20 md:h-24 md:w-24 object-contain mix-blend-screen opacity-95 pointer-events-none">
+          </div>
+          <div class="mt-4 pointer-events-none">
+            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-bg block mb-2">Doctrine</span>
+            <p class="text-brand-bg/80 text-sm leading-relaxed">Tactics win battles, doctrines win wars. Examining the paradigms guiding India's high command.</p>
           </div>
         </div>
         
         <!-- Card 3: Initiative -->
-        <div class="framework-card tilt-card bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col justify-between min-h-[260px] md:min-h-[300px] transition-all duration-300 select-none">
-          <div class="font-serif text-6xl md:text-7xl font-bold text-brand-accent">I</div>
-          <div class="mt-8 pointer-events-none">
-            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-accent block mb-2">Initiative</span>
-            <p class="text-brand-muted text-sm leading-relaxed">Initiative in grey zones. Shaping conflicts before they start, from the LAC to the Indian Ocean.</p>
+        <div class="framework-card tilt-card bg-brand-accent border border-brand-accent/30 rounded-xl p-5 sm:p-6 md:p-7 flex flex-col items-center justify-between text-center min-h-[210px] md:min-h-[280px] transition-all duration-300 select-none overflow-hidden">
+          <div class="flex min-h-24 md:min-h-28 w-full items-center justify-center">
+            <img src="media/Initiative-w-scaled.webp" alt="Initiative" class="h-20 w-20 md:h-24 md:w-24 object-contain mix-blend-screen opacity-95 pointer-events-none">
+          </div>
+          <div class="mt-4 pointer-events-none">
+            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-bg block mb-2">Initiative</span>
+            <p class="text-brand-bg/80 text-sm leading-relaxed">Initiative in grey zones. Shaping conflicts before they start, from the LAC to the Indian Ocean.</p>
           </div>
         </div>
         
         <!-- Card 4: Terrain -->
-        <div class="framework-card tilt-card bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col justify-between min-h-[260px] md:min-h-[300px] transition-all duration-300 select-none">
-          <div class="font-serif text-6xl md:text-7xl font-bold text-brand-accent">T</div>
-          <div class="mt-8 pointer-events-none">
-            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-accent block mb-2">Terrain</span>
-            <p class="text-brand-muted text-sm leading-relaxed">Geography is destiny. Navigating tactical dilemmas of the Himalayas and maritime checkpoints.</p>
+        <div class="framework-card tilt-card bg-brand-accent border border-brand-accent/30 rounded-xl p-5 sm:p-6 md:p-7 flex flex-col items-center justify-between text-center min-h-[210px] md:min-h-[280px] transition-all duration-300 select-none overflow-hidden">
+          <div class="flex min-h-24 md:min-h-28 w-full items-center justify-center">
+            <img src="media/Terrain-w-scaled.webp" alt="Terrain" class="h-20 w-20 md:h-24 md:w-24 object-contain mix-blend-screen opacity-95 pointer-events-none">
+          </div>
+          <div class="mt-4 pointer-events-none">
+            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-bg block mb-2">Terrain</span>
+            <p class="text-brand-bg/80 text-sm leading-relaxed">Geography is destiny. Navigating tactical dilemmas of the Himalayas and maritime checkpoints.</p>
           </div>
         </div>
         
         <!-- Card 5: Integration -->
-        <div class="framework-card tilt-card col-span-2 md:col-span-1 bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col justify-between min-h-[260px] md:min-h-[300px] transition-all duration-300 select-none">
-          <div class="font-serif text-6xl md:text-7xl font-bold text-brand-accent">I</div>
-          <div class="mt-8 pointer-events-none">
-            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-accent block mb-2">Integration</span>
-            <p class="text-brand-muted text-sm leading-relaxed">Jointness is survival. Addressing service silos and building unified combat commands.</p>
+        <div class="framework-card tilt-card sm:col-span-2 md:col-span-1 bg-brand-accent border border-brand-accent/30 rounded-xl p-5 sm:p-6 md:p-7 flex flex-col items-center justify-between text-center min-h-[210px] md:min-h-[280px] transition-all duration-300 select-none overflow-hidden">
+          <div class="flex min-h-24 md:min-h-28 w-full items-center justify-center">
+            <img src="media/Integration-w-scaled.webp" alt="Integration" class="h-20 w-20 md:h-24 md:w-24 object-contain mix-blend-screen opacity-95 pointer-events-none">
+          </div>
+          <div class="mt-4 pointer-events-none">
+            <span class="font-sans font-bold text-xs uppercase tracking-wider text-brand-bg block mb-2">Integration</span>
+            <p class="text-brand-bg/80 text-sm leading-relaxed">Jointness is survival. Addressing service silos and building unified combat commands.</p>
           </div>
         </div>
       </div>
@@ -262,8 +314,8 @@
   </section>
 
   <!-- Section 6: Dispatches / Read -->
-  <section id="read" class="py-16 md:py-24 bg-brand-bg border-t border-brand-border overflow-hidden relative">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+  <section id="read" class="py-14 md:py-24 bg-brand-bg border-t border-brand-border overflow-hidden relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 mb-10 md:mb-12">
       <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold block mb-4">Strategic Essays</span>
       <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-brand-dark">Dispatches</h2>
       <p class="text-brand-muted text-base md:text-lg max-w-xl font-light">Each dispatch is a standalone strategic essay. Buy what moves you.</p>
@@ -271,78 +323,86 @@
 
     <!-- Category 1: Free to Read -->
     <div class="mb-16">
-      <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center gap-3 mb-6">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex flex-wrap items-center gap-3 mb-6">
         <span class="text-sm font-bold tracking-wide uppercase text-brand-dark">Free to Read</span>
         <span class="px-2.5 py-0.5 text-[10px] font-semibold tracking-widest uppercase bg-green-50 text-green-700 border border-green-200 rounded-full">Open</span>
       </div>
       
-      <!-- Responsive grid for Free Articles -->
-      <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+      <!-- Carousel for Free Articles -->
+      <div class="carousel-shell relative max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+      <button type="button" class="carousel-arrow carousel-arrow-left hidden lg:flex absolute left-7 md:left-14 top-1/2 z-20 h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-brand-surface text-brand-accent border border-brand-accent/30 shadow-lg shadow-brand-accent/10 opacity-0 pointer-events-none transition-opacity" data-carousel-prev="free" aria-label="Scroll free articles left">&larr;</button>
+      <button type="button" class="carousel-arrow carousel-arrow-right hidden lg:flex absolute right-7 md:right-14 top-1/2 z-20 h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-brand-accent text-brand-bg border border-brand-accent shadow-lg shadow-brand-accent/20 opacity-0 pointer-events-none transition-opacity" data-carousel-next="free" aria-label="Scroll free articles right">&rarr;</button>
+      <div class="article-carousel flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4 md:pb-6" data-carousel="free">
         <!-- Card 1 (Free) -->
-        <article class="article-card bg-brand-surface border border-brand-border rounded-xl flex flex-col h-[460px] overflow-hidden group transition-all duration-300">
-          <div class="h-[220px] overflow-hidden relative">
-            <img src="https://picsum.photos/seed/kargildoc/640/360" alt="The Kargil Doctrine and What We Forgot" class="w-full h-full object-cover transition-transform duration-500 ease-out">
+        <article class="article-card article-card-size snap-start bg-brand-surface border border-brand-border rounded-xl flex flex-col min-h-[420px] overflow-hidden group transition-all duration-150">
+          <div class="h-48 sm:h-52 md:h-[220px] overflow-hidden relative">
+            <img src="https://picsum.photos/seed/northeastsecurity/640/360" alt="Inside the Government's North East Security" class="w-full h-full object-cover transition-transform duration-150 ease-out">
           </div>
           <div class="p-5 flex-grow flex flex-col justify-between">
             <div>
-              <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Doctrine</span>
-              <h3 class="font-serif text-lg font-bold text-brand-dark line-clamp-2 leading-snug group-hover:text-brand-accent transition-colors duration-300">
-                The Kargil Doctrine and What We Forgot
+              <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Security</span>
+              <h3 class="font-serif text-lg font-bold text-brand-dark leading-snug group-hover:text-brand-accent transition-colors duration-150">
+                Inside the Government's North East Security
               </h3>
-              <p class="text-brand-muted text-xs mt-3 line-clamp-3 leading-relaxed">
-                India's response to Kargil was tactical. What it lacked was strategic permanence. We revisit the doctrine that was never written.
+              <p class="text-brand-muted text-xs mt-3 leading-relaxed">
+                A placeholder essay page for the North East security article. Replace this summary with your final copy.
               </p>
             </div>
-            <a href="#" class="mt-4 px-4 py-2 border border-brand-accent/40 text-brand-accent hover:border-brand-accent hover:bg-brand-accent/15 text-xs font-semibold rounded-md transition-all duration-300 w-full text-center block">
+            <a href="inside-government-north-east-security.html" class="mt-4 px-4 py-2 border border-brand-accent/40 text-brand-accent hover:border-brand-accent hover:bg-brand-accent/15 text-xs font-semibold rounded-md transition-all duration-150 w-full text-center block">
               Read Free
             </a>
           </div>
         </article>
 
         <!-- Card 2 (Free) -->
-        <article class="article-card bg-brand-surface border border-brand-border rounded-xl flex flex-col h-[460px] overflow-hidden group transition-all duration-300">
-          <div class="h-[220px] overflow-hidden relative">
-            <img src="https://picsum.photos/seed/integrationdeficit/640/360" alt="Integration Deficit: Why India's Services Don't Talk" class="w-full h-full object-cover transition-transform duration-500 ease-out">
+        <article class="article-card article-card-size snap-start bg-brand-surface border border-brand-border rounded-xl flex flex-col min-h-[420px] overflow-hidden group transition-all duration-150">
+          <div class="h-48 sm:h-52 md:h-[220px] overflow-hidden relative">
+            <img src="https://picsum.photos/seed/cognitivewarfare/640/360" alt="China's Cognitive Warfare and India" class="w-full h-full object-cover transition-transform duration-150 ease-out">
           </div>
           <div class="p-5 flex-grow flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Integration</span>
-              <h3 class="font-serif text-lg font-bold text-brand-dark line-clamp-2 leading-snug group-hover:text-brand-accent transition-colors duration-300">
-                Integration Deficit: Why India's Services Don't Talk
+              <h3 class="font-serif text-lg font-bold text-brand-dark leading-snug group-hover:text-brand-accent transition-colors duration-150">
+                China's Cognitive Warfare and India
               </h3>
-              <p class="text-brand-muted text-xs mt-3 line-clamp-3 leading-relaxed">
+              <p class="text-brand-muted text-xs mt-3 leading-relaxed">
                 The Shekatkar Committee said it plainly. Three years later, the deficit persists. The question is no longer structural — it is political.
               </p>
             </div>
-            <a href="#" class="mt-4 px-4 py-2 border border-brand-accent/40 text-brand-accent hover:border-brand-accent hover:bg-brand-accent/15 text-xs font-semibold rounded-md transition-all duration-300 w-full text-center block">
+            <a href="chinas-cognitive-warfare-and-india.html" class="mt-4 px-4 py-2 border border-brand-accent/40 text-brand-accent hover:border-brand-accent hover:bg-brand-accent/15 text-xs font-semibold rounded-md transition-all duration-150 w-full text-center block">
               Read Free
             </a>
           </div>
         </article>
       </div>
+      </div>
+      <div class="carousel-dots max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex justify-center gap-2" data-carousel-dots="free" aria-label="Free article carousel position"></div>
     </div>
 
     <!-- Category 2: Premium -->
     <div>
-      <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center gap-3 mb-6">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex flex-wrap items-center gap-3 mb-6">
         <span class="text-sm font-bold tracking-wide uppercase text-brand-dark">Premium Dispatches</span>
         <span class="px-2.5 py-0.5 text-[10px] font-semibold tracking-widest uppercase bg-brand-accent/10 text-brand-accent border border-brand-accent/30 rounded-full">&bull; &nbsp;₹350 each</span>
       </div>
       
-      <!-- Responsive grid for Premium Articles -->
-      <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 pb-6">
+      <!-- Carousel for Premium Articles -->
+      <div class="carousel-shell relative max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+      <button type="button" class="carousel-arrow carousel-arrow-left hidden lg:flex absolute left-7 md:left-14 top-1/2 z-20 h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-brand-surface text-brand-accent border border-brand-accent/30 shadow-lg shadow-brand-accent/10 opacity-0 pointer-events-none transition-opacity" data-carousel-prev="premium" aria-label="Scroll premium articles left">&larr;</button>
+      <button type="button" class="carousel-arrow carousel-arrow-right hidden lg:flex absolute right-7 md:right-14 top-1/2 z-20 h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-brand-accent text-brand-bg border border-brand-accent shadow-lg shadow-brand-accent/20 opacity-0 pointer-events-none transition-opacity" data-carousel-next="premium" aria-label="Scroll premium articles right">&rarr;</button>
+      <div class="article-carousel flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4 md:pb-6" data-carousel="premium">
         <!-- Card 3 (Premium) -->
-        <article class="article-card bg-brand-surface border border-brand-border rounded-xl flex flex-col h-[500px] overflow-hidden group transition-all duration-300">
-          <div class="h-[220px] overflow-hidden relative">
-            <img src="https://picsum.photos/seed/brahmos/640/360" alt="Armament as Signal" class="w-full h-full object-cover transition-transform duration-500 ease-out">
+        <article class="article-card article-card-size snap-start bg-brand-surface border border-brand-border rounded-xl flex flex-col min-h-[470px] overflow-hidden group transition-all duration-150">
+          <div class="h-48 sm:h-52 md:h-[220px] overflow-hidden relative">
+            <img src="https://picsum.photos/seed/brahmos/640/360" alt="Armament as Signal" class="w-full h-full object-cover transition-transform duration-150 ease-out">
           </div>
           <div class="p-5 flex-grow flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Armament</span>
-              <h3 class="font-serif text-lg font-bold text-brand-dark line-clamp-2 leading-snug group-hover:text-brand-accent transition-colors duration-300">
+              <h3 class="font-serif text-lg font-bold text-brand-dark leading-snug group-hover:text-brand-accent transition-colors duration-150">
                 Armament as Signal: The BrahMos Sale to the Philippines
               </h3>
-              <p class="text-brand-muted text-xs mt-3 line-clamp-3 leading-relaxed">
+              <p class="text-brand-muted text-xs mt-3 leading-relaxed">
                 When India sold BrahMos, it wasn't a transaction. It was a statement. One that changed the geometry of the Indo-Pacific.
               </p>
             </div>
@@ -351,7 +411,7 @@
                 <span class="text-[10px] text-brand-muted uppercase tracking-wider">Premium Access</span>
                 <span class="text-brand-accent font-bold text-base">₹350</span>
               </div>
-              <a href="#" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-300 w-full text-center block">
+              <a href="auth.html" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-150 w-full text-center block">
                 Read Now
               </a>
             </div>
@@ -359,17 +419,17 @@
         </article>
 
         <!-- Card 4 (Premium) -->
-        <article class="article-card bg-brand-surface border border-brand-border rounded-xl flex flex-col h-[500px] overflow-hidden group transition-all duration-300">
-          <div class="h-[220px] overflow-hidden relative">
-            <img src="https://picsum.photos/seed/himalayanterrain/640/360" alt="The Himalayan Terrain Problem" class="w-full h-full object-cover transition-transform duration-500 ease-out">
+        <article class="article-card article-card-size snap-start bg-brand-surface border border-brand-border rounded-xl flex flex-col min-h-[470px] overflow-hidden group transition-all duration-150">
+          <div class="h-48 sm:h-52 md:h-[220px] overflow-hidden relative">
+            <img src="https://picsum.photos/seed/himalayanterrain/640/360" alt="The Himalayan Terrain Problem" class="w-full h-full object-cover transition-transform duration-150 ease-out">
           </div>
           <div class="p-5 flex-grow flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Terrain</span>
-              <h3 class="font-serif text-lg font-bold text-brand-dark line-clamp-2 leading-snug group-hover:text-brand-accent transition-colors duration-300">
+              <h3 class="font-serif text-lg font-bold text-brand-dark leading-snug group-hover:text-brand-accent transition-colors duration-150">
                 The Himalayan Terrain Problem
               </h3>
-              <p class="text-brand-muted text-xs mt-3 line-clamp-3 leading-relaxed">
+              <p class="text-brand-muted text-xs mt-3 leading-relaxed">
                 No army fights the same war twice on the same mountain. India's terrain doctrine has been shaped by failure as much as by geography.
               </p>
             </div>
@@ -378,7 +438,7 @@
                 <span class="text-[10px] text-brand-muted uppercase tracking-wider">Premium Access</span>
                 <span class="text-brand-accent font-bold text-base">₹350</span>
               </div>
-              <a href="#" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-300 w-full text-center block">
+              <a href="auth.html" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-150 w-full text-center block">
                 Read Now
               </a>
             </div>
@@ -386,17 +446,17 @@
         </article>
 
         <!-- Card 5 (Premium) -->
-        <article class="article-card bg-brand-surface border border-brand-border rounded-xl flex flex-col h-[500px] overflow-hidden group transition-all duration-300">
-          <div class="h-[220px] overflow-hidden relative">
-            <img src="https://picsum.photos/seed/greyzones/640/360" alt="Initiative in Grey Zones" class="w-full h-full object-cover transition-transform duration-500 ease-out">
+        <article class="article-card article-card-size snap-start bg-brand-surface border border-brand-border rounded-xl flex flex-col min-h-[470px] overflow-hidden group transition-all duration-150">
+          <div class="h-48 sm:h-52 md:h-[220px] overflow-hidden relative">
+            <img src="https://picsum.photos/seed/greyzones/640/360" alt="Initiative in Grey Zones" class="w-full h-full object-cover transition-transform duration-150 ease-out">
           </div>
           <div class="p-5 flex-grow flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Initiative</span>
-              <h3 class="font-serif text-lg font-bold text-brand-dark line-clamp-2 leading-snug group-hover:text-brand-accent transition-colors duration-300">
+              <h3 class="font-serif text-lg font-bold text-brand-dark leading-snug group-hover:text-brand-accent transition-colors duration-150">
                 Initiative in Grey Zones: Lessons from the LAC
               </h3>
-              <p class="text-brand-muted text-xs mt-3 line-clamp-3 leading-relaxed">
+              <p class="text-brand-muted text-xs mt-3 leading-relaxed">
                 Grey zone operations don't announce themselves. India's preparedness — and its gaps — along the LAC reveal a doctrine still in formation.
               </p>
             </div>
@@ -405,7 +465,7 @@
                 <span class="text-[10px] text-brand-muted uppercase tracking-wider">Premium Access</span>
                 <span class="text-brand-accent font-bold text-base">₹350</span>
               </div>
-              <a href="#" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-300 w-full text-center block">
+              <a href="auth.html" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-150 w-full text-center block">
                 Read Now
               </a>
             </div>
@@ -413,17 +473,17 @@
         </article>
 
         <!-- Card 6 (Premium) -->
-        <article class="article-card bg-brand-surface border border-brand-border rounded-xl flex flex-col h-[500px] overflow-hidden group transition-all duration-300">
-          <div class="h-[220px] overflow-hidden relative">
-            <img src="https://picsum.photos/seed/pokhranii/640/360" alt="Nuclear Doctrine After Pokhran-II" class="w-full h-full object-cover transition-transform duration-500 ease-out">
+        <article class="article-card article-card-size snap-start bg-brand-surface border border-brand-border rounded-xl flex flex-col min-h-[470px] overflow-hidden group transition-all duration-150">
+          <div class="h-48 sm:h-52 md:h-[220px] overflow-hidden relative">
+            <img src="https://picsum.photos/seed/pokhranii/640/360" alt="Nuclear Doctrine After Pokhran-II" class="w-full h-full object-cover transition-transform duration-150 ease-out">
           </div>
           <div class="p-5 flex-grow flex flex-col justify-between">
             <div>
               <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Doctrine</span>
-              <h3 class="font-serif text-lg font-bold text-brand-dark line-clamp-2 leading-snug group-hover:text-brand-accent transition-colors duration-300">
+              <h3 class="font-serif text-lg font-bold text-brand-dark leading-snug group-hover:text-brand-accent transition-colors duration-150">
                 Nuclear Doctrine After Pokhran-II: A Quarter Century On
               </h3>
-              <p class="text-brand-muted text-xs mt-3 line-clamp-3 leading-relaxed">
+              <p class="text-brand-muted text-xs mt-3 leading-relaxed">
                 India's nuclear posture was declared in 1999. The world has changed. Has the doctrine?
               </p>
             </div>
@@ -432,79 +492,108 @@
                 <span class="text-[10px] text-brand-muted uppercase tracking-wider">Premium Access</span>
                 <span class="text-brand-accent font-bold text-base">₹350</span>
               </div>
-              <a href="#" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-300 w-full text-center block">
+              <a href="auth.html" class="px-4 py-2.5 bg-brand-accent text-brand-bg hover:bg-brand-accent/90 text-xs font-bold rounded-md transition-colors duration-150 w-full text-center block">
                 Read Now
               </a>
             </div>
           </div>
         </article>
       </div>
+      </div>
+      <div class="carousel-dots max-w-7xl mx-auto px-5 sm:px-6 md:px-12 flex justify-center gap-2" data-carousel-dots="premium" aria-label="Premium article carousel position"></div>
     </div>
   </section>
 
   <!-- Section 7: Editions -->
-  <section id="editions" class="py-24 md:py-32 bg-brand-bg border-t border-brand-border relative">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
-      <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold block mb-4">Frequency & Rigour</span>
-      <h2 class="font-serif text-4xl md:text-5xl font-bold mb-16 tracking-tight text-brand-dark">The Publishing Model</h2>
-      
-      <!-- Stats Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-4xl mx-auto">
-        <div class="p-8 bg-brand-surface border border-brand-border rounded-xl hover:border-brand-accent/35 transition-colors duration-300">
-          <div class="font-serif text-7xl md:text-8xl font-bold text-brand-accent mb-2">6</div>
-          <span class="font-sans text-xs uppercase tracking-wider text-brand-muted font-bold">Issues Per Year</span>
-        </div>
-        <div class="p-8 bg-brand-surface border border-brand-border rounded-xl hover:border-brand-accent/35 transition-colors duration-300">
-          <div class="font-serif text-7xl md:text-8xl font-bold text-brand-accent mb-2">5</div>
-          <span class="font-sans text-xs uppercase tracking-wider text-brand-muted font-bold">Pillars Per Issue</span>
-        </div>
-        <div class="p-8 bg-brand-surface border border-brand-border rounded-xl hover:border-brand-accent/35 transition-colors duration-300">
-          <div class="font-serif text-7xl md:text-8xl font-bold text-brand-accent mb-2">1</div>
-          <span class="font-sans text-xs uppercase tracking-wider text-brand-muted font-bold">Paradox Per Issue</span>
-        </div>
+  <section id="editions" class="py-14 md:py-24 bg-brand-bg border-t border-brand-border relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+      <div class="max-w-2xl mb-8 md:mb-12">
+        <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold block mb-4">Frequency & Rigour</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-brand-dark text-balance">The Publishing Model</h2>
+        <p class="text-brand-muted text-sm md:text-base leading-relaxed font-light">
+          A slower editorial rhythm built for strategic depth: fewer editions, clearer pillars, and one central contradiction per issue.
+        </p>
       </div>
-      
-      <!-- Explanatory Paragraph -->
-      <p class="max-w-2xl mx-auto text-brand-muted text-sm md:text-base leading-relaxed font-light">
-        ADITI operates on a focused publishing model. We do not publish daily feeds. We publish six curated editions a year, exploring the core contradictions of Indian grand strategy. Every edition centers on our five framework pillars, delivering deep, actionable foresight for strategists.
-      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-8 min-w-0 hover:border-brand-accent/35 transition-colors duration-300">
+          <div class="flex items-center gap-4 mb-6">
+              <span class="model-stat-number h-12 w-12 shrink-0 rounded-full bg-brand-accent text-brand-bg font-sans text-2xl font-bold">6</span>
+              <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Editions</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-3 text-balance">Curated, not constant</h3>
+            <p class="text-sm leading-relaxed text-brand-muted">Six major releases a year keep the work deliberate, researched, and worth returning to.</p>
+          </div>
+
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-8 min-w-0 hover:border-brand-accent/35 transition-colors duration-300">
+          <div class="flex items-center gap-4 mb-6">
+              <span class="model-stat-number h-12 w-12 shrink-0 rounded-full bg-brand-accent text-brand-bg font-sans text-2xl font-bold">5</span>
+              <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Pillars</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-3 text-balance">One framework</h3>
+            <p class="text-sm leading-relaxed text-brand-muted">Every edition is mapped across armament, doctrine, initiative, terrain, and integration.</p>
+          </div>
+
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-8 min-w-0 hover:border-brand-accent/35 transition-colors duration-300">
+          <div class="flex items-center gap-4 mb-6">
+              <span class="model-stat-number h-12 w-12 shrink-0 rounded-full bg-brand-accent text-brand-bg font-sans text-2xl font-bold">1</span>
+              <span class="text-xs uppercase tracking-widest text-brand-accent font-bold">Paradox</span>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-brand-dark mb-3 text-balance">A central question</h3>
+            <p class="text-sm leading-relaxed text-brand-muted">Each issue studies one strategic contradiction instead of scattering attention across headlines.</p>
+          </div>
+      </div>
     </div>
   </section>
 
   <!-- Section 8: Credentials -->
-  <section id="credentials" class="py-24 md:py-32 bg-brand-bg border-t border-brand-border">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 text-center">
+  <section id="credentials" class="py-16 md:py-24 bg-brand-bg border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+      <div class="max-w-2xl mb-10 md:mb-14">
       <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold block mb-4">Trusted Intelligence</span>
-      <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6 tracking-tight text-brand-dark">Contributors</h2>
-      <p class="text-brand-muted text-sm md:text-base mb-16 tracking-wide uppercase font-light">Written by practitioners. Read by strategists.</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight text-brand-dark text-balance">Contributors</h2>
+        <p class="text-brand-muted text-sm md:text-base leading-relaxed font-light">Written by practitioners. Read by strategists.</p>
+      </div>
       
       <!-- Contributors Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
         <!-- Contributor 1 -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-8 flex flex-col items-center hover:border-brand-accent/30 transition-colors duration-300">
-          <img src="https://picsum.photos/seed/contrib1/100/100" alt="Lt. Gen. Sandeep Mehta" class="w-16 h-16 rounded-full object-cover border border-brand-accent/40 mb-4 select-none">
-          <h3 class="font-sans font-bold text-brand-dark text-base">Lt. Gen. Sandeep Mehta (Retd.)</h3>
-          <span class="text-[10px] text-brand-accent uppercase tracking-wider block mt-1 mb-6">Former Director General of Military Operations</span>
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
+          <div class="flex items-center gap-4 mb-5">
+            <img src="https://picsum.photos/seed/contrib1/100/100" alt="Lt. Gen. Sandeep Mehta" class="w-16 h-16 shrink-0 rounded-full object-cover border border-brand-accent/40 select-none">
+            <div>
+              <h3 class="font-sans font-bold text-brand-dark text-base leading-snug">Lt. Gen. Sandeep Mehta (Retd.)</h3>
+              <span class="text-[10px] text-brand-accent uppercase tracking-wider block mt-1">Former DGMO</span>
+            </div>
+          </div>
           <p class="font-serif italic text-brand-muted text-sm leading-relaxed">
             "ADITI cuts through the noise of defence procurement. It is the first Indian publication to examine hardware as doctrine."
           </p>
         </div>
 
         <!-- Contributor 2 -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-8 flex flex-col items-center hover:border-brand-accent/30 transition-colors duration-300">
-          <img src="https://picsum.photos/seed/contrib2/100/100" alt="Dr. Arundhati Rao" class="w-16 h-16 rounded-full object-cover border border-brand-accent/40 mb-4 select-none">
-          <h3 class="font-sans font-bold text-brand-dark text-base">Dr. Arundhati Rao</h3>
-          <span class="text-[10px] text-brand-accent uppercase tracking-wider block mt-1 mb-6">Professor of Strategic Studies</span>
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
+          <div class="flex items-center gap-4 mb-5">
+            <img src="https://picsum.photos/seed/contrib2/100/100" alt="Dr. Arundhati Rao" class="w-16 h-16 shrink-0 rounded-full object-cover border border-brand-accent/40 select-none">
+            <div>
+              <h3 class="font-sans font-bold text-brand-dark text-base leading-snug">Dr. Arundhati Rao</h3>
+              <span class="text-[10px] text-brand-accent uppercase tracking-wider block mt-1">Strategic Studies</span>
+            </div>
+          </div>
           <p class="font-serif italic text-brand-muted text-sm leading-relaxed">
             "A vital space for strategic thinking that does not merely echo Western paradigms. Essential reading for Indian policymakers."
           </p>
         </div>
 
         <!-- Contributor 3 -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-8 flex flex-col items-center hover:border-brand-accent/30 transition-colors duration-300">
-          <img src="https://picsum.photos/seed/contrib3/100/100" alt="Commodore V. K. Nair" class="w-16 h-16 rounded-full object-cover border border-brand-accent/40 mb-4 select-none">
-          <h3 class="font-sans font-bold text-brand-dark text-base">Commodore V. K. Nair (Retd.)</h3>
-          <span class="text-[10px] text-brand-accent uppercase tracking-wider block mt-1 mb-6">Maritime Security Analyst</span>
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 md:p-7 flex flex-col hover:border-brand-accent/30 transition-colors duration-300">
+          <div class="flex items-center gap-4 mb-5">
+            <img src="https://picsum.photos/seed/contrib3/100/100" alt="Commodore V. K. Nair" class="w-16 h-16 shrink-0 rounded-full object-cover border border-brand-accent/40 select-none">
+            <div>
+              <h3 class="font-sans font-bold text-brand-dark text-base leading-snug">Commodore V. K. Nair (Retd.)</h3>
+              <span class="text-[10px] text-brand-accent uppercase tracking-wider block mt-1">Maritime Security</span>
+            </div>
+          </div>
           <p class="font-serif italic text-brand-muted text-sm leading-relaxed">
             "The analysis of the Indian Ocean's geographical bottlenecks in ADITI is second to none. Truly practitioner-grade intelligence."
           </p>
@@ -514,109 +603,111 @@
   </section>
 
   <!-- Section 10: Final CTA (Moved above FAQ!) -->
-  <section class="py-28 md:py-36 bg-brand-bg border-t border-brand-border relative flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+  <section class="py-20 md:py-28 bg-brand-bg border-t border-brand-border relative flex flex-col items-center justify-center text-center px-5 overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(128,0,32,0.05)_0%,transparent_60%)] pointer-events-none"></div>
-    <div class="max-w-4xl mx-auto z-10">
+    <div class="max-w-4xl mx-auto z-10 w-full">
       <!-- Heading animated on enter -->
-      <h2 id="cta-heading" class="font-serif text-3xl md:text-5xl font-bold text-brand-dark leading-tight max-w-2xl mx-auto mb-10 tracking-tight">
+      <h2 id="cta-heading" class="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-brand-dark leading-tight max-w-3xl mx-auto mb-8 md:mb-10 tracking-tight text-balance">
         Ready to think differently about Indian strategy?
       </h2>
       
       <!-- Big CTA button -->
-      <a href="#read" class="inline-block px-10 py-4 bg-brand-accent text-brand-bg font-bold rounded-lg hover:bg-brand-accent/90 hover:scale-105 transition-all duration-300 text-sm tracking-widest uppercase shadow-lg shadow-brand-accent/20 magnetic">
+      <a href="#read" class="inline-block w-full max-w-[280px] sm:w-auto sm:max-w-none px-7 sm:px-10 py-4 bg-brand-accent text-brand-bg font-bold rounded-lg hover:bg-brand-accent/90 hover:scale-105 transition-all duration-300 text-xs sm:text-sm tracking-widest uppercase shadow-lg shadow-brand-accent/20 magnetic">
         Browse Dispatches
       </a>
     </div>
   </section>
 
   <!-- Section 9: FAQ Accordion (Moved below Final CTA!) -->
-  <section id="faq" class="py-24 md:py-32 bg-brand-bg border-t border-brand-border">
-    <div class="max-w-3xl mx-auto px-6">
-      <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold block mb-4 text-center">Got Questions?</span>
-      <h2 class="font-serif text-4xl md:text-5xl font-bold mb-16 tracking-tight text-center text-brand-dark">Frequently Asked Questions</h2>
+  <section id="faq" class="py-16 md:py-24 bg-brand-bg border-t border-brand-border">
+    <div class="max-w-4xl mx-auto px-5 sm:px-6">
+      <div class="max-w-2xl mx-auto text-center mb-8 md:mb-12">
+        <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold block mb-4">Got Questions?</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-brand-dark text-balance">Frequently Asked Questions</h2>
+      </div>
       
-      <div class="flex flex-col">
+      <div class="flex flex-col gap-3">
         <!-- FAQ Item 1 -->
-        <details class="group py-6 border-b border-brand-border">
+        <details class="group rounded-xl border border-brand-border bg-brand-surface px-5 py-4 md:px-6 md:py-5">
           <summary class="flex justify-between items-center list-none cursor-pointer focus:outline-none select-none">
-            <span class="font-sans font-semibold text-base md:text-lg text-brand-dark group-hover:text-brand-accent transition-colors duration-300">
+            <span class="font-sans font-semibold text-sm md:text-base text-brand-dark group-hover:text-brand-accent transition-colors duration-300 pr-4">
               What is ADITI?
             </span>
-            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180">
+            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180 shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </span>
           </summary>
-          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-2xl font-light">
+          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-3xl font-light">
             ADITI is a premium, strategic geopolitics publication dedicated to deep, doctrine-first analysis of Indian defense, security, and foreign policy. We focus on long-form strategic clarity over daily news feeds.
           </div>
         </details>
 
         <!-- FAQ Item 2 -->
-        <details class="group py-6 border-b border-brand-border">
+        <details class="group rounded-xl border border-brand-border bg-brand-surface px-5 py-4 md:px-6 md:py-5">
           <summary class="flex justify-between items-center list-none cursor-pointer focus:outline-none select-none">
-            <span class="font-sans font-semibold text-base md:text-lg text-brand-dark group-hover:text-brand-accent transition-colors duration-300">
+            <span class="font-sans font-semibold text-sm md:text-base text-brand-dark group-hover:text-brand-accent transition-colors duration-300 pr-4">
               How much does an article cost?
             </span>
-            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180">
+            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180 shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </span>
           </summary>
-          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-2xl font-light">
+          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-3xl font-light">
             Individual premium dispatches are priced at ₹350 each. Once purchased, you retain lifetime access to the essay on any device.
           </div>
         </details>
 
         <!-- FAQ Item 3 -->
-        <details class="group py-6 border-b border-brand-border">
+        <details class="group rounded-xl border border-brand-border bg-brand-surface px-5 py-4 md:px-6 md:py-5">
           <summary class="flex justify-between items-center list-none cursor-pointer focus:outline-none select-none">
-            <span class="font-sans font-semibold text-base md:text-lg text-brand-dark group-hover:text-brand-accent transition-colors duration-300">
+            <span class="font-sans font-semibold text-sm md:text-base text-brand-dark group-hover:text-brand-accent transition-colors duration-300 pr-4">
               Is there a subscription model?
             </span>
-            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180">
+            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180 shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </span>
           </summary>
-          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-2xl font-light">
+          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-3xl font-light">
             Currently, ADITI is designed around single-article purchases, allowing readers to buy only the specific strategic analyses that interest them. An annual subscription model is planned for late 2026.
           </div>
         </details>
 
         <!-- FAQ Item 4 -->
-        <details class="group py-6 border-b border-brand-border">
+        <details class="group rounded-xl border border-brand-border bg-brand-surface px-5 py-4 md:px-6 md:py-5">
           <summary class="flex justify-between items-center list-none cursor-pointer focus:outline-none select-none">
-            <span class="font-sans font-semibold text-base md:text-lg text-brand-dark group-hover:text-brand-accent transition-colors duration-300">
+            <span class="font-sans font-semibold text-sm md:text-base text-brand-dark group-hover:text-brand-accent transition-colors duration-300 pr-4">
               How often is ADITI published?
             </span>
-            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180">
+            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180 shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </span>
           </summary>
-          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-2xl font-light">
+          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-3xl font-light">
             We publish six major print and digital editions a year. In between editions, standalone dispatches are released on an ongoing basis.
           </div>
         </details>
 
         <!-- FAQ Item 5 -->
-        <details class="group py-6">
+        <details class="group rounded-xl border border-brand-border bg-brand-surface px-5 py-4 md:px-6 md:py-5">
           <summary class="flex justify-between items-center list-none cursor-pointer focus:outline-none select-none">
-            <span class="font-sans font-semibold text-base md:text-lg text-brand-dark group-hover:text-brand-accent transition-colors duration-300">
+            <span class="font-sans font-semibold text-sm md:text-base text-brand-dark group-hover:text-brand-accent transition-colors duration-300 pr-4">
               Who is ADITI for?
             </span>
-            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180">
+            <span class="text-brand-accent transition-transform duration-300 group-open:rotate-180 shrink-0">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </span>
           </summary>
-          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-2xl font-light">
+          <div class="mt-4 text-brand-muted text-sm md:text-base leading-relaxed max-w-3xl font-light">
             ADITI is written for policymakers, defense practitioners, military officers, strategic analysts, and citizens who want a rigorous, doctrine-level understanding of Indian national security.
           </div>
         </details>
@@ -678,16 +769,26 @@
     // Register GSAP Plugins
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-    const homeVideo = document.getElementById('home-video');
-    if (homeVideo) {
+    const homeVideos = document.querySelectorAll('.home-video-player');
+    homeVideos.forEach((homeVideo) => {
       homeVideo.muted = true;
       homeVideo.playsInline = true;
+      homeVideo.setAttribute('muted', '');
+      homeVideo.setAttribute('playsinline', '');
+
+      let usedFallback = false;
+      homeVideo.addEventListener('error', () => {
+        if (usedFallback) return;
+        usedFallback = true;
+        homeVideo.src = 'media/aditi-hero-video.mp4';
+        homeVideo.load();
+      });
 
       const startHomeVideo = () => {
         const playPromise = homeVideo.play();
         if (playPromise && typeof playPromise.catch === 'function') {
           playPromise.catch(() => {
-            homeVideo.controls = true;
+            if (homeVideo.id === 'home-video') homeVideo.controls = true;
           });
         }
       };
@@ -695,9 +796,11 @@
       if (homeVideo.readyState >= 2) {
         startHomeVideo();
       } else {
+        homeVideo.load();
+        homeVideo.addEventListener('loadedmetadata', startHomeVideo, { once: true });
         homeVideo.addEventListener('canplay', startHomeVideo, { once: true });
       }
-    }
+    });
 
     // -----------------------------------------------------
     // 1. Custom Lerping Cursor (Desktop Only)
@@ -866,7 +969,7 @@
     }
 
     // Hero pin and horizontal subtitle reveal on scroll
-    if (document.getElementById('hero-section')) {
+    if (document.getElementById('hero-section') && window.matchMedia('(min-width: 1024px)').matches) {
       const heroTl = gsap.timeline({
         scrollTrigger: {
           trigger: '#hero-section',
@@ -899,18 +1002,18 @@
       
       const marqueeTween = gsap.to(marqueeContent, {
         x: -marqueeWidth,
-        duration: 22,
+        duration: 86,
         ease: 'none',
         repeat: -1
       });
 
       ScrollTrigger.create({
         onUpdate: (self) => {
-          let scrollVelocity = Math.abs(self.getVelocity() / 120);
+          let scrollVelocity = Math.abs(self.getVelocity() / 1100);
           let targetSpeed = 1 + scrollVelocity;
           gsap.to(marqueeTween, {
-            timeScale: Math.min(targetSpeed, 5),
-            duration: 0.3,
+            timeScale: Math.min(targetSpeed, 1.35),
+            duration: 0.65,
             overwrite: 'auto'
           });
         }
@@ -981,7 +1084,7 @@
         gsap.to(card, {
           rotateX: 0,
           rotateY: 0,
-          borderColor: '#E5E2DA',
+          borderColor: 'rgba(128, 0, 32, 0.3)',
           boxShadow: '0 0px 0px rgba(0, 0, 0, 0)',
           duration: 0.5,
           ease: "power2.out"
@@ -992,6 +1095,72 @@
     // -----------------------------------------------------
     // 10. Section 6: Article Cards scrolltrigger and card hovers
     // -----------------------------------------------------
+    const setupCarouselDots = (carousel) => {
+      const id = carousel.dataset.carousel;
+      const dotsWrap = document.querySelector(`[data-carousel-dots="${id}"]`);
+      const prevButton = document.querySelector(`[data-carousel-prev="${id}"]`);
+      const nextButton = document.querySelector(`[data-carousel-next="${id}"]`);
+      const cards = Array.from(carousel.querySelectorAll('.article-card'));
+      if (!dotsWrap || cards.length === 0) return;
+
+      dotsWrap.innerHTML = cards.map((_, index) => (
+        `<button type="button" class="carousel-dot ${index === 0 ? 'is-active' : ''}" aria-label="Go to card ${index + 1}"></button>`
+      )).join('');
+
+      const dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+      const updateCarouselState = () => {
+        const carouselLeft = carousel.scrollLeft;
+        let activeIndex = 0;
+        let closest = Infinity;
+
+        cards.forEach((card, index) => {
+          const distance = Math.abs(card.offsetLeft - carousel.offsetLeft - carouselLeft);
+          if (distance < closest) {
+            closest = distance;
+            activeIndex = index;
+          }
+        });
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('is-active', index === activeIndex);
+        });
+
+        const canScroll = carousel.scrollWidth > carousel.clientWidth + 2;
+        const atStart = carousel.scrollLeft <= 2;
+        const atEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 2;
+
+        if (prevButton) {
+          prevButton.classList.toggle('opacity-0', !canScroll || atStart);
+          prevButton.classList.toggle('pointer-events-none', !canScroll || atStart);
+        }
+
+        if (nextButton) {
+          nextButton.classList.toggle('opacity-0', !canScroll || atEnd);
+          nextButton.classList.toggle('pointer-events-none', !canScroll || atEnd);
+        }
+      };
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        });
+      });
+
+      const scrollByPage = (direction) => {
+        const cardStep = cards[0].offsetWidth + 24;
+        carousel.scrollBy({ left: direction * cardStep * 3, behavior: 'smooth' });
+      };
+
+      if (prevButton) prevButton.addEventListener('click', () => scrollByPage(-1));
+      if (nextButton) nextButton.addEventListener('click', () => scrollByPage(1));
+
+      carousel.addEventListener('scroll', () => window.requestAnimationFrame(updateCarouselState), { passive: true });
+      window.addEventListener('resize', updateCarouselState);
+      updateCarouselState();
+    };
+
+    document.querySelectorAll('.article-carousel').forEach(setupCarouselDots);
+
     const articleCards = document.querySelectorAll('.article-card');
     
     if (articleCards.length > 0) {
@@ -1012,18 +1181,19 @@
         }
       });
 
-      // Hover triggers card float y: -12px, border burgundy, burgundy shadow glow, and brighten/scale image
+      // Fast hover response for article cards.
       articleCards.forEach(card => {
         const img = card.querySelector('img');
         card.addEventListener('mouseenter', () => {
           gsap.to(card, { 
-            y: -12, 
+            y: -6, 
             borderColor: '#800020', 
-            boxShadow: '0 12px 28px -4px rgba(128, 0, 32, 0.12)',
-            duration: 0.3, 
-            ease: 'power2.out' 
+            boxShadow: '0 8px 18px -6px rgba(128, 0, 32, 0.16)',
+            duration: 0.12, 
+            ease: 'power1.out',
+            overwrite: 'auto'
           });
-          if (img) gsap.to(img, { scale: 1.05, filter: 'brightness(1.15)', duration: 0.3, ease: 'power2.out' });
+          if (img) gsap.to(img, { scale: 1.025, filter: 'brightness(1.08)', duration: 0.12, ease: 'power1.out', overwrite: 'auto' });
         });
 
         card.addEventListener('mouseleave', () => {
@@ -1031,10 +1201,11 @@
             y: 0, 
             borderColor: '#E5E2DA', 
             boxShadow: '0 0px 0px 0px rgba(0, 0, 0, 0)',
-            duration: 0.3, 
-            ease: 'power2.out' 
+            duration: 0.1, 
+            ease: 'power1.out',
+            overwrite: 'auto'
           });
-          if (img) gsap.to(img, { scale: 1.0, filter: 'brightness(1.0)', duration: 0.3, ease: 'power2.out' });
+          if (img) gsap.to(img, { scale: 1.0, filter: 'brightness(1.0)', duration: 0.1, ease: 'power1.out', overwrite: 'auto' });
         });
       });
     }
